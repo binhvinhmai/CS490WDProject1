@@ -1,0 +1,75 @@
+@font-face {
+    font-family: Oleo;
+    src: url(/fonts/Oleo.woff);
+}
+
+#header {
+    position: relative;
+    background-color: rgb(245, 245, 245);
+    width: 100%;
+    font-family: Oleo;
+    display: block;
+}
+
+#header img {
+    width: 40px;
+    vertical-align: middle;
+}
+
+#header h4 {
+    position: relative;
+    display: inline;
+    padding-right: 30px;
+}
+
+#search_bar {
+    vertical-align: middle;
+    width: 470px;
+}
+
+#search_button {
+    vertical-align: middle;
+    color: white;
+    background-color: dodgerblue;
+    margin: 0 auto;
+    margin: -6px;
+}
+
+#icons_bar {
+    position: relative;
+    vertical-align: middle;
+    width: 100%;
+    border-bottom: solid thin rgb(245, 245, 245);
+}
+
+#icons_bar p{
+    display: inline-block;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+
+#icons_bar select {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#grid_image {
+    display: inline-block;
+    float: right;
+    margin: 0 auto;
+    vertical-align: middle;
+    padding: 10px 10px 5px 0px;
+}
+
+#list_image{
+    display: inline-block;
+    float: right;
+    margin: 0 auto;
+    vertical-align: middle; 
+    padding: 10px -0px 5px 10px;
+}
+
+
+
+
