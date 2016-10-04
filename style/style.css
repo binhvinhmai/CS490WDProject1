@@ -4,11 +4,12 @@
 }
 
 #header {
-    position: relative;
+    position: fixed;
     background-color: rgb(245, 245, 245);
     width: 100%;
     font-family: Oleo;
     display: block;
+    top: 0;
 }
 
 #header img {
@@ -23,6 +24,7 @@
 }
 
 #search_bar {
+    position: relative;
     vertical-align: middle;
     width: 470px;
 }
@@ -36,15 +38,17 @@
 }
 
 #icons_bar {
-    position: relative;
+    position: fixed;
+    display: block;
     vertical-align: middle;
     width: 100%;
     border-bottom: solid thin rgb(245, 245, 245);
+    margin: 30px auto;
 }
 
 #icons_bar p{
     display: inline-block;
-    padding-right: 10px;
+    padding: 0px 10px 0px 10px;
     vertical-align: middle;
 }
 
@@ -52,6 +56,8 @@
     position: relative;
     display: inline-block;
     vertical-align: middle;
+    width: 75px;
+    height: 30px;
 }
 
 #grid_image {
@@ -67,7 +73,7 @@
     float: right;
     margin: 0 auto;
     vertical-align: middle; 
-    padding: 10px -0px 5px 10px;
+    padding: 10px 0px 5px 10px;
 }
 
 
