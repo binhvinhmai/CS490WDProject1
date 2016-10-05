@@ -10,6 +10,7 @@
     font-family: Oleo;
     display: block;
     top: 0;
+    left: 0;
 }
 
 #header img {
@@ -33,7 +34,6 @@
     vertical-align: middle;
     color: white;
     background-color: dodgerblue;
-    margin: 0 auto;
     margin: -6px;
 }
 
@@ -76,6 +76,52 @@
     padding: 10px 0px 5px 10px;
 }
 
-
+@media only screen and (max-width: 480px) {
+    /*CSS for displays with width equal or smaller than 480px*/
+    
+    #header {
+        position: fixed;
+        background-color: rgb(245, 245, 245);
+        width: 100%;
+        font-family: Oleo;
+        display: block;
+        top: 0;
+        left: 0;
+    }
+    
+    #header img {
+        visibility: hidden;
+    }
+    
+    #header h4{
+        top: 50%;
+        left: 25%;
+        padding: 0px;
+    }
+    
+    #search_bar {
+        position: relative;
+        vertical-align: middle;
+        width: 270px;
+        left: 15%;
+    }
+    
+    #search_button {
+        position: relative;
+        margin: auto;
+    }
+    
+    #icons_bar p{
+        display: inline-block;
+        padding: 0px 10px 0px 10px;
+        vertical-align: middle;
+    }
+    
+    #icons_bar {
+        position: fixed;
+        left: 0;
+        margin: 60px auto;
+    }
+}
 
 
