@@ -3,125 +3,128 @@
     src: url(/fonts/Oleo.woff);
 }
 
-#header {
+#fixed_header{
     position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+
+#header {
+    display: inline-block;
     background-color: rgb(245, 245, 245);
     width: 100%;
-    font-family: Oleo;
-    display: block;
-    top: 0;
     left: 0;
+    top: 0;
+    padding-bottom: 20px;
 }
 
 #header img {
-    width: 40px;
-    vertical-align: middle;
+    display: none;
 }
 
 #header h4 {
+    font-family: Oleo;
+    text-align: center;
+    line-height: 1;
+}
+
+#search_feature {
     position: relative;
-    display: inline;
-    padding-right: 30px;
+    width: 80%;
+    margin: 0 auto;
+    vertical-align: top;
+    top: 0;
 }
 
 #search_bar {
-    position: relative;
-    vertical-align: middle;
-    width: 470px;
+    display: inline-block;
+    float: left;
+    width: 80%;
+    height: 17px;
 }
 
 #search_button {
-    vertical-align: middle;
+    position: relative;
+    float: left;
     color: white;
-    background-color: dodgerblue;
-    margin: -6px;
+    background-color: #009FE3;
+    height: 23px;
+    margin: auto;
 }
 
 #icons_bar {
-    position: fixed;
-    display: block;
-    vertical-align: middle;
     width: 100%;
+    left: 0;
     border-bottom: solid thin rgb(245, 245, 245);
-    margin: 30px auto;
 }
 
-#icons_bar p{
+#icons_bar p {
     display: inline-block;
     padding: 0px 10px 0px 10px;
-    vertical-align: middle;
+    vertical-align: middle; 
+}
+
+#sort_dropdown {
+    -webkit-appearance: none;
+    -mox-appearance: none;
+    background: url("/images/black_down_triangle.png") no-repeat right;
+    background-position: 22px 3px;
+    background-size: 10px;
 }
 
 #icons_bar select {
     position: relative;
     display: inline-block;
+    background: transparent;
+    -webkit-border-radius: 0px;
     vertical-align: middle;
     width: 75px;
-    height: 30px;
+    height: 25px;
+    border: 1px solid thin rgb(245, 245, 245);
+}
+
+#icons_bar select option {
+    padding-left: 2px;
 }
 
 #grid_image {
     display: inline-block;
     float: right;
-    margin: 0 auto;
     vertical-align: middle;
-    padding: 10px 10px 5px 0px;
+    padding: 10px 10px 5px 0px;   
 }
 
-#list_image{
+#list_image {
     display: inline-block;
     float: right;
-    margin: 0 auto;
-    vertical-align: middle; 
+    vertical-align: middle;
     padding: 10px 0px 5px 10px;
+    
 }
 
-@media only screen and (max-width: 480px) {
-    /*CSS for displays with width equal or smaller than 480px*/
+@media all and (min-width: 480px) {
+    /*CSS for displays with width equal or larger than 480px*/
     
     #header {
-        position: fixed;
-        background-color: rgb(245, 245, 245);
-        width: 100%;
-        font-family: Oleo;
-        display: block;
-        top: 0;
-        left: 0;
+        padding-bottom: 0px;
     }
-    
     #header img {
-        visibility: hidden;
-    }
-    
-    #header h4{
-        top: 50%;
-        left: 25%;
-        padding: 0px;
-    }
-    
-    #search_bar {
-        position: relative;
-        vertical-align: middle;
-        width: 270px;
-        left: 15%;
-    }
-    
-    #search_button {
-        position: relative;
-        margin: auto;
-    }
-    
-    #icons_bar p{
         display: inline-block;
-        padding: 0px 10px 0px 10px;
+        width: 40px;
         vertical-align: middle;
     }
     
-    #icons_bar {
-        position: fixed;
-        left: 0;
-        margin: 60px auto;
+    #header h4 {
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        padding: 0px 10px 0px 10px;
+    }
+    
+    #search_feature {
+        display: inline-block;
+        vertical-align: middle;
+        width: 470px;
     }
 }
-
-

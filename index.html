@@ -8,21 +8,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body> 
-        <div id="header">
-            <img src="images/movie.png">
-            <h4>RENT A MOVIE</h4>
-            <input type="text" id="search_bar">
-            <input type="button" value="Search" id="search_button">
+        <div id = "fixed_header">
+            <div id="header">
+                <img src="images/movie.png">
+                <h4>RENT A MOVIE</h4>
+                <div id="search_feature">
+                    <input type="text" id="search_bar" value="Search for movies">
+                    <input type="button" id="search_button" value="Search">
+                </div> 
+            </div>
+            <div id="icons_bar">
+                <p>Sort By:</p>
+                <select id="sort_dropdown">
+                    <option value="year">&#160;Year</option>
+                    <option value="rating">&#160;Rating</option>
+                </select>
+                <img src="images/grid.jpg" id="grid_image">
+                <img src="images/list.jpg" id="list_image">
+            </div>
         </div>
-        <div id="icons_bar">
-            <p>Sort By:</p>
-            <select>
-                <option value="year">Year</option>
-                <option value="rating">Rating</option>
-            </select>
-            <img src="images/grid.jpg" id="grid_image">
-            <img src="images/list.jpg" id="list_image">
-        </div>
+
         <div class="movie_list">
         </div>
     </body>
