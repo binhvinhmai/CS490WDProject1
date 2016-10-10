@@ -17,6 +17,7 @@
     left: 0;
     top: 0;
     padding-bottom: 20px;
+    z-index: 40;
 }
 
 #header img {
@@ -53,6 +54,29 @@
     margin: auto;
 }
 
+#div.suggestions {
+    position: absolute;
+    top: 25px;
+    z-index: 50;
+    border-color: lightgray;
+    background-color; white;
+    border-style: solid;
+    border-width: 1px;
+    width: 100%;
+    overflow: auto;
+    display: none;
+    
+}
+
+div.sub_suggestions{
+    width: 100%;
+    padding: 5px;
+}
+
+div.sub_suggestions:hover{
+    background-color: rgb(245, 245, 245);
+}
+
 #icons_bar {
     width: 100%;
     left: 0;
@@ -66,26 +90,17 @@
 }
 
 #sort_dropdown {
+    position: relative;
     -webkit-appearance: none;
     -mox-appearance: none;
-    background: url("/images/black_down_triangle.png") no-repeat right;
-    background-position: 22px 3px;
-    background-size: 10px;
-}
-
-#icons_bar select {
-    position: relative;
-    display: inline-block;
-    background: transparent;
     -webkit-border-radius: 0px;
-    vertical-align: middle;
-    width: 75px;
+    background: url("/images/black_down_triangle.png") no-repeat right;
+    width: 70px;
     height: 25px;
+    background-position: 50px 3px;
+    background-size: 15px;
+    vertical-align: middle;
     border: 1px solid thin rgb(245, 245, 245);
-}
-
-#icons_bar select option {
-    padding-left: 2px;
 }
 
 #grid_image {
@@ -99,8 +114,110 @@
     display: inline-block;
     float: right;
     vertical-align: middle;
-    padding: 10px 0px 5px 10px;
+    padding: 10px 0px 5px 10px;   
+}
+
+.movie_list {
+    position: relative;
+    display: block;
+    z-index: 20;
+    widows: 100%;
+    margin-top: 175px;
+}
+
+.grid .movie {
+    position: relative;
+    float: left;
+    margin: 30px 0px 0px 30px;
+    height: 200px;
+    width: 200px;
+    top: 15px;
+    left: 15px;
+}
+
+.grid .movie img{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 200px;
+    width: 200px;
+    padding: 5px;
+    border-color: 1px solid lightgray;
+}
+
+.grid .title {
+    position: absolute;
+    left: 6px;
+    bottom: 6px;
+    height: 120px;
+    width: 200px;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0.6;   
+}
+
+.grid .year {
     
+}
+
+.grid .starring {
+    display: none;
+}
+
+.grid:hover .starring {
+    display: block;
+    position: absolute;
+    left: 6px;
+    bottom: 6px;
+    height: 40px;
+    width: 200px;
+    text-align: left;
+    color: white;
+    background-color: black;
+    opacity: 0.7;
+    
+}
+
+.grid .description {
+    display: none;
+}
+
+.list {
+    position: relative;
+}
+                                                                                                                                                                                                                                                                             
+
+.list .movie {
+    position: relative;
+    display: block;
+    height: 260px;
+    width: 260px;
+    padding: 15px 10px 10px 10px;
+    border-bottom: 1px solid thin rgb(245, 245, 245);
+}
+
+.list .movie img {
+    height: 220px;
+    width: 220px;
+    padding: 5px;
+}
+
+.list .title {
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.list .year {
+    font-size: 15px;
+    color: gray;
+}
+
+.list .description {
+    line-height: 1.5;
+    width: 450px; 
+    background-color: rgb(236,255,255);
 }
 
 @media all and (min-width: 480px) {
@@ -127,4 +244,11 @@
         vertical-align: middle;
         width: 470px;
     }
+    
+    .movie_list {
+        margin-top: 145px;
+    }
 }
+
+
+
