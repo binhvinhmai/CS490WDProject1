@@ -2,22 +2,40 @@
 <html>
     <head>
         <title>Movie Search System</title>
+        <!-- Collaborative project with Binh Mai, Lucy Kull, and Alex Carlisle-->
         <link rel="stylesheet" type="text/css" href="style/style.css">
         <meta charset="utf-8" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="data/movies.js"></script>
+        <script src="script/htmlMaker.js"></script>
+        <script src="script/iteration.js"></script>
         <script id="movie-template" type="text/html">
-        <div class='movie'>
-            <img src='{{path}}'>
-            <div class='description'>{{description}}</div>
-            <div class='year'>{{year}}</div>    
-        </div> 
-    </script>
-    <script src="htmlMaker.js"></script>
-    <script src="data.js"></script>
-    <script src="movies.js"></script>
+            <div class='movie'>
+                <img src='{{photo}}' class="photo">
+                <div class="title">{{title}}</div>
+                <div id="HD"><img src="images/HD.png" class='{{HD}}'></div>
+                <div class="starring">Starring:<br>{{starring}}</div>
+                <div class="rating">{{rating}}</div>
+                <div class='description'>{{description}}</div>
+                <div class='year'>{{year}}</div> 
+            </div> 
+        </script>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body> 
+        <!--
+        TO DO: 
+        Add CSS for the grid and list movies, including descriptions
+        Create Javascript for the suggestions box to show live search for ANY field, MAX 5. If there are multiple results, we need to have a scroll bar
+        Create Javascript to load movies into the HTML dynamically. Check out Task 6
+        When the user clicks a suggestion, the name of the movie is displayed in the search box
+        Displays the movies that match what the suer typed in
+        Switches the view to the list view when clicking the 'list' icon, and switch to grid view when clicking the 'grid' icon. 
+        Sort movies by rating or year using the combo box at top. Use the custom compare function in Task 9. 
+        Should title and year be combined into one div field? IDK 
+        
+        -->
         <div id = "fixed_header">
             <div id="header">
                 <img src="images/movie.png">
@@ -25,7 +43,10 @@
                 <div id="search_feature">
                     <input type="text" id="search_bar" value="Search for movies">
                     <input type="button" id="search_button" value="Search">
-                </div> 
+                    <div id="suggestions_box" class="suggestions">
+
+                    </div>
+                </div>
             </div>
             <div id="icons_bar">
                 <p>Sort By:</p>
@@ -33,12 +54,11 @@
                     <option value="year">&#160;Year</option>
                     <option value="rating">&#160;Rating</option>
                 </select>
-                <img src="images/grid.jpg" id="grid_image">
+                <img src="images/grid_pressed.jpg" id="grid_image">
                 <img src="images/list.jpg" id="list_image">
             </div>
         </div>
-
-        <div id="movie_list" class="grid">
-        </div>
+        <div id="movie_list" class="grid">        
+        </div> 
     </body>
 </html>

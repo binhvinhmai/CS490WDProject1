@@ -8,6 +8,7 @@
     width: 100%;
     left: 0;
     top: 0;
+    z-index: 10;
 }
 
 #header {
@@ -81,6 +82,7 @@ div.sub_suggestions:hover{
     width: 100%;
     left: 0;
     border-bottom: solid thin rgb(245, 245, 245);
+    background: white;
 }
 
 #icons_bar p {
@@ -123,6 +125,7 @@ div.sub_suggestions:hover{
     z-index: 20;
     widows: 100%;
     margin-top: 175px;
+    z-index: 1;
 }
 
 .grid .movie {
@@ -133,6 +136,7 @@ div.sub_suggestions:hover{
     width: 200px;
     top: 15px;
     left: 15px;
+    padding: 6px;
 }
 
 .grid .movie img{
@@ -155,18 +159,27 @@ div.sub_suggestions:hover{
     color: white;
     text-transform: uppercase;
     text-align: center;
-    opacity: 0.6;   
+    opacity: 0.6;  
+    line-height: 2;
 }
 
 .grid .year {
-    
+    position: absolute;
+    left: 90px;
+    margin-top: 100px;
+    color: white;
+    opacity: 0.6;
+}
+
+.grid .rating {
+    display: none;
 }
 
 .grid .starring {
     display: none;
 }
 
-.grid:hover .starring {
+.grid .movie:hover .starring {
     display: block;
     position: absolute;
     left: 6px;
@@ -188,36 +201,78 @@ div.sub_suggestions:hover{
     position: relative;
 }
                                                                                                                                                                                                                                                                              
+#movie_list{
+    position: relative;
+    display: block;
+    top: 150px;
+}
+
+#movie_list .list {
+    position: relative;
+    display: block;
+    top: 100px;
+}
 
 .list .movie {
     position: relative;
     display: block;
     height: 260px;
-    width: 260px;
+    width: 100%;
     padding: 15px 10px 10px 10px;
     border-bottom: 1px solid thin rgb(245, 245, 245);
 }
 
 .list .movie img {
+    position: absolute;
     height: 220px;
     width: 220px;
     padding: 5px;
 }
 
 .list .title {
+    position: relative;
+    display: block;
     text-transform: uppercase;
     font-size: 18px;
+    left: 250px;
 }
 
 .list .year {
+    position: absolute;
+    display: block;
     font-size: 15px;
     color: gray;
+    left: 250px;
 }
 
 .list .description {
+    position: absolute;
+    display: block;
     line-height: 1.5;
-    width: 450px; 
     background-color: rgb(236,255,255);
+    left: 250px;
+}
+
+.grid .true {
+    max-height: 30px;
+    max-width: 40px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.grid .false {
+    display: none;
+}
+
+.list .true {
+    max-height: 30px;
+    max-width: 40px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.list .false {
+    display: none;
 }
 
 @media all and (min-width: 480px) {
@@ -245,8 +300,12 @@ div.sub_suggestions:hover{
         width: 470px;
     }
     
-    .movie_list {
-        margin-top: 145px;
+    #movie_list {
+        margin-top: 20px;
+    }
+    
+    .list .description {
+        width: 450px;
     }
 }
 
