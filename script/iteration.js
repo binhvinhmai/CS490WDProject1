@@ -25,9 +25,8 @@ function Movie_Controller(data) {
     };
     
     var search_function=function(){
-        self.search.call(self);
-        
-    }
+        self.search.call(self);       
+    };
     
     $("html").on('click',function(){
         $("#suggestions_box").hide(); //Must be hardcoded in as if the search box is open, this refers to the search box instead 
