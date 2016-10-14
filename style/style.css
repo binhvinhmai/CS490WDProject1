@@ -55,18 +55,18 @@
     margin: auto;
 }
 
-#div.suggestions {
+.suggestions {
     position: absolute;
     top: 25px;
     z-index: 50;
     border-color: lightgray;
-    background-color; white;
+    background-color: white;
     border-style: solid;
     border-width: 1px;
-    width: 100%;
-    overflow: auto;
+    width: 98%;
+    max-height: 140px;
+    overflow-y: scroll;
     display: none;
-    
 }
 
 div.sub_suggestions{
@@ -105,6 +105,16 @@ div.sub_suggestions:hover{
     border: 1px solid thin rgb(245, 245, 245);
 }
 
+.movie_list {
+    position: relative;
+    display: inline-block;
+    z-index: 20;
+    widows: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+}
+
 #grid_image {
     display: inline-block;
     float: right;
@@ -119,23 +129,12 @@ div.sub_suggestions:hover{
     padding: 10px 0px 5px 10px;   
 }
 
-.movie_list {
-    position: relative;
-    display: block;
-    z-index: 20;
-    widows: 100%;
-    margin-top: 175px;
-    z-index: 1;
-}
-
 .grid .movie {
     position: relative;
     float: left;
     margin: 30px 0px 0px 30px;
     height: 200px;
     width: 200px;
-    top: 15px;
-    left: 15px;
     padding: 6px;
 }
 
@@ -151,9 +150,9 @@ div.sub_suggestions:hover{
 
 .grid .title {
     position: absolute;
-    left: 6px;
+    left: 5px;
     bottom: 6px;
-    height: 120px;
+    height: 50px;
     width: 200px;
     background-color: black;
     color: white;
@@ -163,26 +162,40 @@ div.sub_suggestions:hover{
     line-height: 2;
 }
 
+.grid .movie:hover .title{
+    height: 120px;
+}
+
 .grid .year {
     position: absolute;
     left: 90px;
+    top: 82px;
     margin-top: 100px;
     color: white;
     opacity: 0.6;
+}
+
+.grid .movie:hover .year{
+    top: 15px;
 }
 
 .grid .rating {
     display: none;
 }
 
+.grid #starring_label {
+    line-height: 0;
+}
+
 .grid .starring {
+    line-height: 0.16;
     display: none;
 }
 
 .grid .movie:hover .starring {
     display: block;
     position: absolute;
-    left: 6px;
+    left: 5px;
     bottom: 6px;
     height: 40px;
     width: 200px;
@@ -190,6 +203,8 @@ div.sub_suggestions:hover{
     color: white;
     background-color: black;
     opacity: 0.7;
+    font-size: 14px;
+    overflow-y: scroll;
     
 }
 
@@ -205,20 +220,22 @@ div.sub_suggestions:hover{
     position: relative;
     display: block;
     top: 150px;
+    left: 0;
 }
 
 #movie_list .list {
+    left: 0;
     position: relative;
     display: block;
     top: 100px;
 }
 
 .list .movie {
+    left: 0;
     position: relative;
     display: block;
-    height: 260px;
+    height: 500px;
     width: 100%;
-    padding: 15px 10px 10px 10px;
     border-bottom: 1px solid thin rgb(245, 245, 245);
 }
 
@@ -227,30 +244,56 @@ div.sub_suggestions:hover{
     height: 220px;
     width: 220px;
     padding: 5px;
+    left: 25%;
+    padding: 15px 10px 10px 10px;
 }
 
 .list .title {
-    position: relative;
-    display: block;
+    position:relative;
+    display: inline;
     text-transform: uppercase;
     font-size: 18px;
-    left: 250px;
+    padding-bottom: 10px;
+    font-weight: bold;
+    top: 250px;
 }
 
 .list .year {
-    position: absolute;
-    display: block;
+    position: relative;
+    display: inline;
     font-size: 15px;
     color: gray;
-    left: 250px;
+    top: 250px;
+    padding-left: 5px;
+    
 }
 
 .list .description {
-    position: absolute;
+    position: relative;
     display: block;
     line-height: 1.5;
+    width: 100%;
     background-color: rgb(236,255,255);
-    left: 250px;
+    top: 285px;
+}
+
+.list #starring_label {
+    position: relative;
+    display: inline;
+    font-weight: bold;
+}
+
+.list #movie_stars {
+    display: inline;
+}
+.list .starring {
+    position: relative;
+    top: 255px;
+}
+
+.list .rating {
+    position: relative;
+    top: 270px;
 }
 
 .grid .true {
@@ -267,8 +310,7 @@ div.sub_suggestions:hover{
 .list .true {
     max-height: 30px;
     max-width: 40px;
-    margin-top: 15px;
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 .list .false {
@@ -306,6 +348,54 @@ div.sub_suggestions:hover{
     
     .list .description {
         width: 450px;
+    }
+    
+    .suggestions {
+        width: 92%;
+    }
+    
+    .list .movie {
+        height: 260px;
+        width: 100%;
+    }
+    
+    .list .title {
+        left: 240px;
+        top: 20px;
+    }
+    
+    .list .movie img {
+        left: 0;
+    }
+    .list .year {
+        left: 240px;
+        top: 20px;;
+    }
+    
+    .list .description {
+        left: 240px;
+        top: 60px;
+        width: 450px;
+        overflow-y: scroll;
+        max-height: 200px;
+    }
+    
+    .list .starring {
+        left: 240px;
+        top: 25px;
+    }
+    
+    .list #starring_label {
+        display: inline;
+    }
+    
+    .list #movie_stars {
+        display: inline;
+    }
+    
+    .list .rating {
+        left: 240px;
+        top: 45px;
     }
 }
 

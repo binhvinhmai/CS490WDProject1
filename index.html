@@ -12,12 +12,14 @@
         <script id="movie-template" type="text/html">
             <div class='movie'>
                 <img src='{{photo}}' class="photo">
-                <div class="title">{{title}}</div>
+                <div movie_info>         
+                    <div class="title">{{title}}</div>
+                    <div class='year'>({{year}})</div>
+                </div>
                 <div id="HD"><img src="images/HD.png" class='{{HD}}'></div>
-                <div class="starring">Starring:<br>{{starring}}</div>
-                <div class="rating">{{rating}}</div>
+                <div class="starring"><p id="starring_label">&#160;Starring:</p><p id="movie_stars">&#160;{{starring}}</p></div>
+                <div class="rating">Rating: {{rating}}</div>
                 <div class='description'>{{description}}</div>
-                <div class='year'>{{year}}</div> 
             </div> 
         </script>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
@@ -27,21 +29,18 @@
         <!--
         TO DO: 
         Add CSS for the grid and list movies, including descriptions
-        Create Javascript for the suggestions box to show live search for ANY field, MAX 5. If there are multiple results, we need to have a scroll bar
-        Create Javascript to load movies into the HTML dynamically. Check out Task 6
-        When the user clicks a suggestion, the name of the movie is displayed in the search box
-        Displays the movies that match what the suer typed in
-        Switches the view to the list view when clicking the 'list' icon, and switch to grid view when clicking the 'grid' icon. 
-        Sort movies by rating or year using the combo box at top. Use the custom compare function in Task 9. 
-        Should title and year be combined into one div field? IDK 
-        
+        Figure out how to do ratings. 
+        Sort movies by rating or year using the combo box at top. Use the custom compare function in Task 9.
+        Have the search feature also ANYTHING about the movie. Right now it's just the title of the movie. 
+        Edit the search button so that when the user clicks search, it filters the movies out. It needs to somehow loop through all of the entire this.movies. 
+
         -->
         <div id = "fixed_header">
             <div id="header">
                 <img src="images/movie.png">
                 <h4>RENT A MOVIE</h4>
                 <div id="search_feature">
-                    <input type="text" id="search_bar" value="Search for movies">
+                    <input type="text" id="search_bar" placeholder="Search for movies">
                     <input type="button" id="search_button" value="Search">
                     <div id="suggestions_box" class="suggestions">
 
