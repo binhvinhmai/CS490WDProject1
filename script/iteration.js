@@ -16,19 +16,19 @@ function Movie_Controller(data) {
     var self=this;
 
     this.load_movies();
+    //Wrapper functions
     var make_grid_function=function(){
         self.make_grid.call(self);
     };
-    
     var make_list_function=function(){
         self.make_list.call(self);
     };
-    
     var search_function=function(){
         self.search.call(self);       
     };
     
-    $("html").on('click',function(){
+    //Add event handlers
+    $("html").on('click',function(){ //Event handler when user clicks outside suggestions box, it hides it
         $("#suggestions_box").hide(); //Must be hardcoded in as if the search box is open, this refers to the search box instead 
      }); 
     
@@ -50,18 +50,21 @@ Movie_Controller.prototype.load_movies = function() {
 }
 
 Movie_Controller.prototype.make_grid = function () {
+    //Function to make the movies into a grid 
     $(this.movie_list).attr("class", "grid");
     $(this.grid_icon).attr("src", "images/grid_pressed.jpg");
     $(this.list_icon).attr("src", "images/list.jpg");
 };
 
 Movie_Controller.prototype.make_list = function () {
+    //Function to make the movies into a listview
     $(this.movie_list).attr("class", "list");
     $(this.grid_icon).attr("src", "images/grid.jpg");
     $(this.list_icon).attr("src", "images/list_pressed.jpg");
 };
 
 Movie_Controller.prototype.search = function() {
+    //Function to search
     var count = Object.keys(this.movies).length; //Get length of the number of movies
     //Create the array
     var movie_array=new Array(count);
@@ -70,7 +73,6 @@ Movie_Controller.prototype.search = function() {
         if ($(this).text() != null) {
             movie_array.push($(this).text());            
         }
-
     });
 
     var html = "";
