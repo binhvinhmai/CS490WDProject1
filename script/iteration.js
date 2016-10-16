@@ -34,8 +34,8 @@ function Movie_Controller(data) {
     
     $(this.grid_icon).on("click", make_grid_function);
     $(this.list_icon).on("click", make_list_function);
-    $(this.search_button).on("click", search_function);
     $(this.field).on("keyup",search_function);
+    $(this.search_button).on("click", search_function);
     
 }    
 	
@@ -69,12 +69,28 @@ Movie_Controller.prototype.search = function() {
     //Create the array
     var movie_array=new Array(count);
     //After the movies have been loaded, select each item with the title class and get their text into the array
-    $('div[class^="title"]').each(function() {
+    $('div[class^="movie"]').each(function() {
         if ($(this).text() != null) {
-            movie_array.push($(this).text());            
+            var text = $(this).children().eq(1).text();
+            var text2 = $(this).children().eq(3).text();
+            movie_array.push(text + text2);            
         }
     });
 
+//THIS IS REALLY INEFFICIENT 
+    for (var k = 0; k < movie_array.length; k++){
+        var string = $.trim(movie_array[k]);
+        var new_string = string.substr(0, string.indexOf(' '));
+        for (var i = 0; i < this.movies.length; i++){
+            var new_title = this.movies[i]["title"].substr(0, this.movies[i]["title"].indexOf(' ') != -1 ? this.movies[i]["title"].indexOf(' ') : this.movies[i]["title"].length);
+            if (new_string == new_title){
+                $("#movie").children().eq(i).attr("visibility", "hidden");
+                i = this.movies.length;
+            }
+        }
+    }
+    
+    
     var html = "";
     var value = $(this.field).val(); //get the value of the text field
     var show=false; //don't show suggestions
@@ -103,4 +119,5 @@ Movie_Controller.prototype.search = function() {
     }
     else
        $(this.suggestions).hide();
+    
 }
