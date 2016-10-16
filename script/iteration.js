@@ -27,6 +27,10 @@ function Movie_Controller(data) {
         self.search.call(self);       
     };
     
+    var search_results_function=function(){
+        self.search_click.call(self);
+    };
+    
     //Add event handlers
     $("html").on('click',function(){ //Event handler when user clicks outside suggestions box, it hides it
         $("#suggestions_box").hide(); //Must be hardcoded in as if the search box is open, this refers to the search box instead 
@@ -35,7 +39,7 @@ function Movie_Controller(data) {
     $(this.grid_icon).on("click", make_grid_function);
     $(this.list_icon).on("click", make_list_function);
     $(this.field).on("keyup",search_function);
-    $(this.search_button).on("click", search_function);
+    $(this.search_button).on("click", search_results_function);
     
 }    
 	
@@ -76,19 +80,6 @@ Movie_Controller.prototype.search = function() {
             movie_array.push(text + text2);            
         }
     });
-
-//THIS IS REALLY INEFFICIENT 
-    for (var k = 0; k < movie_array.length; k++){
-        var string = $.trim(movie_array[k]);
-        var new_string = string.substr(0, string.indexOf(' '));
-        for (var i = 0; i < this.movies.length; i++){
-            var new_title = this.movies[i]["title"].substr(0, this.movies[i]["title"].indexOf(' ') != -1 ? this.movies[i]["title"].indexOf(' ') : this.movies[i]["title"].length);
-            if (new_string == new_title){
-                $("#movie").children().eq(i).attr("visibility", "hidden");
-                i = this.movies.length;
-            }
-        }
-    }
     
     
     var html = "";
@@ -120,4 +111,29 @@ Movie_Controller.prototype.search = function() {
     else
        $(this.suggestions).hide();
     
+}
+
+Movie_Controller.prototype.search_click = function() {
+    var movie_box = document.getElementById("movie_list").children; //actual movie divs
+    var movie_titles = document.getElementsByClassName("title");  //just the movie title
+    var suggestions = document.getElementsByClassName("sub_suggestions");  //the suggestions that pop up when you search
+    var match = false; //bool for hiding movies that don't match results
+    for (var i = 0; i < movie_titles.length; i++)
+    {
+        $(movie_box[i]).show();  //make sure we can access all movies before we start
+        for (var k = 0; k < suggestions.length; k++)
+        {
+            var match = false; //reset this in case there is more than one match
+            var new_movie_titles = movie_titles[i].innerText.toLowerCase();  //access the text of the movie title
+            var new_suggestions = suggestions[k].innerText.toLowerCase().substr(0,new_movie_titles.length);
+            if (new_movie_titles == new_suggestions){  //if they match
+                match = true;
+                k = suggestions.length;
+                $(movie_titles[i]).show();
+            }
+        }
+        if (match == false){  //if the dont match, hide them
+            $(movie_box[i]).hide();
+        }
+    }
 }
