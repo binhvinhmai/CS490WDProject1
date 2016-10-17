@@ -1,14 +1,20 @@
 <!DOCTYPE html>
+<!--
+Project 1: Movie Search System 
+Team Members: Binh Mai, Lucy Kull, and Alex Carlisle
+Due: October 17, 2016
+CS490WD:Web Developlment, Professor Kuhail
+-->
 <html>
     <head>
         <title>Movie Search System</title>
-        <!-- Collaborative project with Binh Mai, Lucy Kull, and Alex Carlisle-->
         <link rel="stylesheet" type="text/css" href="style/style.css">
         <meta charset="utf-8" />
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script src="data/movies.js"></script>
         <script src="script/htmlMaker.js"></script>
         <script src="script/iteration.js"></script>
+        <!-- Movie Template for movie div/sections -->
         <script id="movie-template" type="text/html">
             <div class='movie'>
                 <img src='{{photo}}' class="photo">
@@ -28,11 +34,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body> 
-        <!--
-        TO DO: 
-        Sort movies by rating or year using the combo box at top. Use the custom compare function in Task 9.
-
-        -->
         <div id = "fixed_header">
             <div id="header">
                 <img src="images/movie.png">
