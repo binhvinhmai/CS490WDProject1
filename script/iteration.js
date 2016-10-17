@@ -1,7 +1,9 @@
+//Initlize page and create a movie controller object with data from "movie.js"
 $(document).ready(function () { 
 	var movie_controller = new Movie_Controller(movies["movies"]);
 });
 
+//Movie Controller class that calls all functions whenever page is loaded or changed by user
 function Movie_Controller(data) {
     this.movies=data;
     
@@ -16,7 +18,9 @@ function Movie_Controller(data) {
     this.combo_box="#sort_dropdown"
     var self=this;
 
+    //
     this.load_movies();
+    
     //Wrapper functions
     var make_grid_function=function(){
         self.make_grid.call(self);
@@ -24,31 +28,36 @@ function Movie_Controller(data) {
     var make_list_function=function(){
         self.make_list.call(self);
     };
+    
+    //Drop down box
     var search_function=function(){
         self.search.call(self);       
     };
     
+    //Limit results 
     var search_results_function=function(){
         self.search_click.call(self);
     };
     
+    //Sort movies
     var sort_movies_function=function() {
         self.sort_movies.call(self);
     };
     
-    //Add event handlers
-    $("html").on('click',function(){ //Event handler when user clicks outside suggestions box, it hides it
-        $("#suggestions_box").hide(); //Must be hardcoded in as if the search box is open, this refers to the search box instead 
-     }); 
+    //Event handlers
+    $("html").on('click',function(){ //When user clicks outside suggestion box...
+        $("#suggestions_box").hide(); //Hide the suggestion box
+    }); 
     
-    $(this.grid_icon).on("click", make_grid_function);
-    $(this.list_icon).on("click", make_list_function);
-    $(this.field).on("keyup",search_function);
-    $(this.search_button).on("click", search_results_function);
-    $(this.combo_box).on("change",sort_movies_function);
+    $(this.grid_icon).on("click", make_grid_function);//Change to grid format
+    $(this.list_icon).on("click", make_list_function);//Change to list format
+    $(this.field).on("keyup",search_function);//Typing modifies suggestion results
+    $(this.search_button).on("click", search_results_function);//Show results on click
+    $(this.combo_box).on("change",sort_movies_function);//Sort by rating/year
     
-}    
+};    
 	
+//Load movies into the template and add stars(when in list format)
 Movie_Controller.prototype.load_movies = function() {
     //Get the template
     var template = $(this.movie_template).html();
@@ -58,33 +67,33 @@ Movie_Controller.prototype.load_movies = function() {
     var html=html_maker.getHTML(this.movies);
     $(this.movie_list).html(html);
     this.add_stars();
-}
+};
 
+//Function to make the movies into a grid 
 Movie_Controller.prototype.make_grid = function () {
-    //Function to make the movies into a grid 
     $(this.movie_list).attr("class", "grid");
     $(this.grid_icon).attr("src", "images/grid_pressed.jpg");
     $(this.list_icon).attr("src", "images/list.jpg");
 };
 
+//Function to make the movies into a listview
 Movie_Controller.prototype.make_list = function () {
-    //Function to make the movies into a listview
     $(this.movie_list).attr("class", "list");
     $(this.grid_icon).attr("src", "images/grid.jpg");
     $(this.list_icon).attr("src", "images/list_pressed.jpg");
 };
 
+//Function for the suggestion box to populate
 Movie_Controller.prototype.search = function() {
-    //Function to search
     var count = Object.keys(this.movies).length; //Get length of the number of movies
-    //Create the array
-    var movie_array=new Array(count);
-    //After the movies have been loaded, select each item with the title class and get their text into the array
+    var movie_array=new Array(count);//Create the array
+    
+    //Gets title/starring => turns into an array
     $('div[class^="movie"]').each(function() {
         if ($(this).text() != null) {
-            var text = $(this).children().eq(1).text().trim().replace(/\s\s+/g, ' ');
-            var text2 = $(this).children().eq(3).text().trim();
-            movie_array.push(text + text2);            
+            var title = $(this).children().eq(1).text().trim().replace(/\s\s+/g, ' ');
+            var starring = $(this).children().eq(3).text().trim();
+            movie_array.push(title + starring);            
         }
     });
     
@@ -119,32 +128,38 @@ Movie_Controller.prototype.search = function() {
        $(this.suggestions).hide();
 };
 
+//Function to narrow results on page when search button is clicked
 Movie_Controller.prototype.search_click = function() {
-    var movie_box = document.getElementById("movie_list").children; //actual movie divs
-    var movie_titles = document.getElementsByClassName("title");  //just the movie title
-    $(this.suggestions).show(); //show to get access
-    var suggestions = document.getElementsByClassName("sub_suggestions");  //the suggestions that pop up when you search
-    var match = false; //bool for hiding movies that don't match results
+    var movie_box = document.getElementById("movie_list").children; //Gets the movie div
+    var movie_titles = document.getElementsByClassName("title"); //Get movie title
+    $(this.suggestions).show(); //Populate results(even if suggestion box gone)
+    var suggestions = document.getElementsByClassName("sub_suggestions");  //Suggestions that pop up when you search
+    var match = false; //Bool for hiding movies that don't match results
     for (var i = 0; i < movie_titles.length; i++)
     {
-        $(movie_box[i]).show();  //make sure we can access all movies before we start
+        $(movie_box[i]).show();  //Make sure we can access all movies before we start
         for (var k = 0; k < suggestions.length; k++)
         {
-            var match = false; //reset this in case there is more than one match
-            var new_movie_titles = movie_titles[i].innerText.toLowerCase();  //access the text of the movie title
+            //Reset this in case there is more than one match
+            var match = false; 
+            //Access the text of the movie title
+            var new_movie_titles = movie_titles[i].innerText.toLowerCase();             
             var new_suggestions = suggestions[k].innerText.toLowerCase().substr(0,new_movie_titles.length);
-            if (new_movie_titles == new_suggestions){  //if they match
+            //Show if result matches
+            if (new_movie_titles == new_suggestions){  
                 match = true;
                 k = suggestions.length;
                 $(movie_titles[i]).show();
             }
         }
-        if (match == false){  //if the dont match, hide them
+        //Hide results that don't match
+        if (match == false){  
             $(movie_box[i]).hide();
         }
     }
 };
 
+//Sort movies based on rating/year selection
 Movie_Controller.prototype.sort_movies = function() {
     var by=$(this.combo_box).val().toLowerCase();
     this.movies=this.movies.sort(
@@ -157,10 +172,11 @@ Movie_Controller.prototype.sort_movies = function() {
                     return 1;
             }            
         );
-    
+    //Load movies according to sort
     this.load_movies();
 };
 
+//Function to add star images(replace number rating for images)
 Movie_Controller.prototype.add_stars = function() {
     var count = 0;
     var star_html = "";
@@ -179,3 +195,4 @@ Movie_Controller.prototype.add_stars = function() {
         movie_box[i].children[6].innerHTML = star_html;
     }
 };
+
