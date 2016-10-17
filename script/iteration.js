@@ -13,10 +13,10 @@ function Movie_Controller(data) {
     this.field="#search_bar";
     this.search_button="#search_button";
     this.suggestions="#suggestions_box";
+    this.combo_box="#sort_dropdown"
     var self=this;
 
     this.load_movies();
-    this.add_stars();
     //Wrapper functions
     var make_grid_function=function(){
         self.make_grid.call(self);
@@ -32,6 +32,10 @@ function Movie_Controller(data) {
         self.search_click.call(self);
     };
     
+    var sort_movies_function=function() {
+        self.sort_movies.call(self);
+    };
+    
     //Add event handlers
     $("html").on('click',function(){ //Event handler when user clicks outside suggestions box, it hides it
         $("#suggestions_box").hide(); //Must be hardcoded in as if the search box is open, this refers to the search box instead 
@@ -41,6 +45,7 @@ function Movie_Controller(data) {
     $(this.list_icon).on("click", make_list_function);
     $(this.field).on("keyup",search_function);
     $(this.search_button).on("click", search_results_function);
+    $(this.combo_box).on("change",sort_movies_function);
     
 }    
 	
@@ -52,6 +57,7 @@ Movie_Controller.prototype.load_movies = function() {
     //Generate dynamic HTML based on the data
     var html=html_maker.getHTML(this.movies);
     $(this.movie_list).html(html);
+    this.add_stars();
 }
 
 Movie_Controller.prototype.make_grid = function () {
@@ -111,7 +117,7 @@ Movie_Controller.prototype.search = function() {
     }
     else
        $(this.suggestions).hide();
-}
+};
 
 Movie_Controller.prototype.search_click = function() {
     var movie_box = document.getElementById("movie_list").children; //actual movie divs
@@ -137,7 +143,23 @@ Movie_Controller.prototype.search_click = function() {
             $(movie_box[i]).hide();
         }
     }
-}
+};
+
+Movie_Controller.prototype.sort_movies = function() {
+    var by=$(this.combo_box).val().toLowerCase();
+    this.movies=this.movies.sort(
+            function(a,b){
+                if(a[by]<b[by])
+                    return -1;
+                if(a[by]==b[by])
+                    return 0;
+                if(a[by]>b[by])
+                    return 1;
+            }            
+        );
+    
+    this.load_movies();
+};
 
 Movie_Controller.prototype.add_stars = function() {
     var count = 0;
@@ -154,6 +176,6 @@ Movie_Controller.prototype.add_stars = function() {
                 star_html += "<div class='star'><img src='images/regular_star.png'></div>"
             }
         }
-        movie_box[i].children[5].innerHTML = star_html;
+        movie_box[i].children[6].innerHTML = star_html;
     }
-}
+};

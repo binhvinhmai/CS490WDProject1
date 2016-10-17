@@ -205,6 +205,7 @@ div.sub_suggestions:hover{
     opacity: 0.7;
     font-size: 14px;
     overflow-y: scroll;
+    line-height: 12px;
     
 }
 
@@ -338,6 +339,10 @@ div.sub_suggestions:hover{
 
 .list .rating{
     position: relative;
+}
+
+.rating_num {
+    display: none;
 }
 
 
