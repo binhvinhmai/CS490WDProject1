@@ -76,7 +76,7 @@ Movie_Controller.prototype.search = function() {
     //After the movies have been loaded, select each item with the title class and get their text into the array
     $('div[class^="movie"]').each(function() {
         if ($(this).text() != null) {
-            var text = $(this).children().eq(1).text().trim();
+            var text = $(this).children().eq(1).text().trim().replace(/\s\s+/g, ' ');
             var text2 = $(this).children().eq(3).text().trim();
             movie_array.push(text + text2);            
         }
