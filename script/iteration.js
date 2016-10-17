@@ -127,7 +127,6 @@ Movie_Controller.prototype.search_click = function() {
             var match = false; //reset this in case there is more than one match
             var new_movie_titles = movie_titles[i].innerText.toLowerCase();  //access the text of the movie title
             var new_suggestions = suggestions[k].innerText.toLowerCase().substr(0,new_movie_titles.length);
-            console.log(new_movie_titles + " AND " + new_suggestions)
             if (new_movie_titles == new_suggestions){  //if they match
                 match = true;
                 k = suggestions.length;
