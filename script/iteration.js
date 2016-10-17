@@ -16,6 +16,7 @@ function Movie_Controller(data) {
     var self=this;
 
     this.load_movies();
+    this.add_stars();
     //Wrapper functions
     var make_grid_function=function(){
         self.make_grid.call(self);
@@ -75,12 +76,11 @@ Movie_Controller.prototype.search = function() {
     //After the movies have been loaded, select each item with the title class and get their text into the array
     $('div[class^="movie"]').each(function() {
         if ($(this).text() != null) {
-            var text = $(this).children().eq(1).text();
-            var text2 = $(this).children().eq(3).text();
+            var text = $(this).children().eq(1).text().trim();
+            var text2 = $(this).children().eq(3).text().trim();
             movie_array.push(text + text2);            
         }
     });
-    
     
     var html = "";
     var value = $(this.field).val(); //get the value of the text field
@@ -90,7 +90,7 @@ Movie_Controller.prototype.search = function() {
         if (movie_array[i] != null && movie_array[i] != undefined) {
             var start = movie_array[i].toLowerCase().search(value.toLowerCase().trim());
             if (start != -1) { //if there is a search match
-                html += "<div class='sub_suggestions' data-item='" + movie_array[i] + "' >"; //Add item to html
+                html += "<div class='sub_suggestions' data-item='" + movie_array[i].trim() + "' >"; //Add item to html
                 html += movie_array[i].substring(0,start)+"<b>"+movie_array[i].substring(start,start+value.length)+"</b>"+movie_array[i].substring(start+value.length,movie_array[i].length);
                 html += "</div>";
                 show=true; //show suggestions
@@ -102,20 +102,21 @@ Movie_Controller.prototype.search = function() {
         $(this.suggestions).html(html);
         //Get the children of suggestions_box with .sub_suggestions class
         $(this.suggestions).children(".sub_suggestions").on('click',function(){
-            var item=$(this).attr('data-item'); //get the data
+            var item=$(this).attr('data-item').trim(); //get the data
             $("#search_bar").val(item); //show it in the field
+            $("#suggestions_box").html(this); //make this the only item in the suggestions box
             $("#suggestions_box").hide(); //hide the suggestion box
         });
         $(this.suggestions).show();
     }
     else
        $(this.suggestions).hide();
-    
 }
 
 Movie_Controller.prototype.search_click = function() {
     var movie_box = document.getElementById("movie_list").children; //actual movie divs
     var movie_titles = document.getElementsByClassName("title");  //just the movie title
+    $(this.suggestions).show(); //show to get access
     var suggestions = document.getElementsByClassName("sub_suggestions");  //the suggestions that pop up when you search
     var match = false; //bool for hiding movies that don't match results
     for (var i = 0; i < movie_titles.length; i++)
@@ -126,6 +127,7 @@ Movie_Controller.prototype.search_click = function() {
             var match = false; //reset this in case there is more than one match
             var new_movie_titles = movie_titles[i].innerText.toLowerCase();  //access the text of the movie title
             var new_suggestions = suggestions[k].innerText.toLowerCase().substr(0,new_movie_titles.length);
+            console.log(new_movie_titles + " AND " + new_suggestions)
             if (new_movie_titles == new_suggestions){  //if they match
                 match = true;
                 k = suggestions.length;
@@ -135,5 +137,24 @@ Movie_Controller.prototype.search_click = function() {
         if (match == false){  //if the dont match, hide them
             $(movie_box[i]).hide();
         }
+    }
+}
+
+Movie_Controller.prototype.add_stars = function() {
+    var count = 0;
+    var star_html = "";
+    var movie_box = document.getElementsByClassName("movie");
+    for (var i = 0; i < movie_box.length; i++){
+        count = parseInt(movie_box[i].children[5].textContent);
+        star_html ="";
+        for (var j = 0; j < 5; j++) {
+            if (j < count) {
+                star_html += "<div class='star'><img src='images/gold_star.png'></div>"
+            }
+            else {
+                star_html += "<div class='star'><img src='images/regular_star.png'></div>"
+            }
+        }
+        movie_box[i].children[5].innerHTML = star_html;
     }
 }

@@ -1,6 +1,6 @@
 @font-face {
     font-family: Oleo;
-    src: url(/fonts/Oleo.woff);
+    src: url("../fonts/Oleo.woff");
 }
 
 #fixed_header{
@@ -96,7 +96,7 @@ div.sub_suggestions:hover{
     -webkit-appearance: none;
     -mox-appearance: none;
     -webkit-border-radius: 0px;
-    background: url("/images/black_down_triangle.png") no-repeat right;
+    background: url("../images/black_down_triangle.png") no-repeat right;
     width: 70px;
     height: 25px;
     background-position: 50px 3px;
@@ -212,6 +212,25 @@ div.sub_suggestions:hover{
     display: none;
 }
 
+.grid .rating_text {
+    display: none;
+}
+
+.grid .rating {
+    display: none;
+}
+
+.grid .true {
+    max-height: 30px;
+    max-width: 40px;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.grid .false {
+    display: none;
+}
+
 .list {
     position: relative;
 }
@@ -264,13 +283,12 @@ div.sub_suggestions:hover{
     font-size: 15px;
     color: gray;
     top: 250px;
-    padding-left: 5px;
-    
+    padding-left: 5px;  
 }
 
 .list .description {
     position: relative;
-    display: block;
+    display: inline-block;
     line-height: 1.5;
     width: 100%;
     background-color: rgb(236,255,255);
@@ -291,22 +309,6 @@ div.sub_suggestions:hover{
     top: 255px;
 }
 
-.list .rating {
-    position: relative;
-    top: 270px;
-}
-
-.grid .true {
-    max-height: 30px;
-    max-width: 40px;
-    margin-top: 15px;
-    margin-left: 15px;
-}
-
-.grid .false {
-    display: none;
-}
-
 .list .true {
     max-height: 30px;
     max-width: 40px;
@@ -316,6 +318,28 @@ div.sub_suggestions:hover{
 .list .false {
     display: none;
 }
+
+.list .rating_text {
+    position: relative;
+    display: inline-block;
+    top: 275px;
+}
+
+.list .star img {
+    position: relative;
+    float: left;
+    display: inline-block;
+    top: 255px;
+    left: 50px;
+    max-height: 20px;
+    max-width: 20px;
+    padding: 0px;
+}
+
+.list .rating{
+    position: relative;
+}
+
 
 @media all and (min-width: 480px) {
     /*CSS for displays with width equal or larger than 480px*/
@@ -373,8 +397,9 @@ div.sub_suggestions:hover{
     }
     
     .list .description {
-        left: 240px;
-        top: 60px;
+        display: inline-block;
+        left: 140px;
+        top: 65px;
         width: 450px;
         overflow-y: scroll;
         max-height: 200px;
@@ -393,9 +418,16 @@ div.sub_suggestions:hover{
         display: inline;
     }
     
-    .list .rating {
-        left: 240px;
+    .list .rating_text {
+        position: relative;
+        display: inline-block;
         top: 45px;
+        left: 240px;
+    }
+    
+    .list .star img {
+        top: 25px;
+        left: 300px;
     }
 }
 
